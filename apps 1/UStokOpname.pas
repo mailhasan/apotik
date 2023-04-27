@@ -44,6 +44,8 @@ type
     dbgrdhDataObat: TDBGridEh;
     pm1: TPopupMenu;
     HAPUS1: TMenuItem;
+    cxgrpbxTampilObat: TcxGroupBox;
+    cbblLimit: TcxComboBox;
     procedure cbbNamaObatKeyPress(Sender: TObject; var Key: Char);
     procedure cbbNamaObatDblClick(Sender: TObject);
     procedure cxcrncydtStokKeyPress(Sender: TObject; var Key: Char);
@@ -52,6 +54,7 @@ type
     procedure btnInputClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure HAPUS1Click(Sender: TObject);
+    procedure cbblLimitPropertiesChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -72,6 +75,7 @@ uses UDataApotik, ADODB,DateUtils, DB;
 procedure TFStokOpname.awal;
 begin
   cxdtdtTglStokOpname.Date := Now;
+  cbblLimit.ItemIndex := 0;
 end;
 
 procedure TFStokOpname.baruSetelahInput;
@@ -98,13 +102,26 @@ var
 begin
   tanggal := FormatDateTime('yyyy-MM-dd',cxdtdtTglStokOpname.EditValue);
   tanggal1 := FormatDateTime('yyyy-MM-dd',IncDay(cxdtdtTglStokOpname.EditValue,1));
-  with DM.qryStokOpname do
-  begin
-    Close;
-    SQL.Clear;
-    SQL.Text := 'SELECT * FROM stokopname WHERE tglStokOpname BETWEEN "'+tanggal+'" AND "'+tanggal1+'"';
-    Open;
-  end;
+  if cbblLimit.Text = 'Tampil Semua' then
+    begin
+     with DM.qryStokOpname do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Text := 'SELECT * FROM stokopname WHERE tglStokOpname BETWEEN "'+tanggal+'" AND "'+tanggal1+'"';
+        Open;
+      end;
+    end
+  else
+    begin
+      with DM.qryStokOpname do
+      begin
+        Close;
+        SQL.Clear;
+        SQL.Text := 'SELECT * FROM stokopname WHERE (tglStokOpname BETWEEN "'+tanggal+'" AND "'+tanggal1+'") ORDER BY createDate DESC limit '+cbblLimit.Text+' ';
+        Open;
+      end;
+    end
 end;
 
 procedure TFStokOpname.cbbNamaObatKeyPress(Sender: TObject; var Key: Char);
@@ -188,13 +205,13 @@ if (edtKodeObat.Text='') or (cbbNamaObat.Text='') or
        Close;
        SQL.Clear;
        SQL.Text := 'insert into stokopname (tglStokOpname,kdObat,namaObat,'+
-                  'satuanObat,jumlahStok,jumlahStokReal,keterangan) values '+
+                  'satuanObat,jumlahStok,jumlahStokReal,keterangan,createDate) values '+
                   '("'+tglStokOpname+'","'+edtKodeObat.Text+'","'+cbbNamaObat.Text+'",'+
                   '"'+edtSatuan.Text+'","'+cxcrncydtStok.Text+'","'+cxcrncydtRealStok.Text+'",'+
-                  '"'+cxmKeterangan.Text+'")';
+                  '"'+cxmKeterangan.Text+'","'+FormatDateTime('yyyy-MM-dd hh:mm:ss',Now)+'")';
        ExecSQL;
-       SQL.Text := 'select * from stokopname';
-       Open;
+       //SQL.Text := 'select * from stokopname';
+       //Open;
       end;
 
       baruSetelahInput;
@@ -236,10 +253,10 @@ IF DM.qryStokOpname.RecordCount >= 1 then
      begin
       Close;
       SQL.Clear;
-      SQL.Text := 'delete from stokopname where idStokOpname="'+id+'"';
+      SQL.Text := 'delete from stokopname where idStokOpname="'+id+'" limit 1';
       ExecSQL;
-      SQL.Text := 'select * from stokopname';
-      Open;
+      ///SQL.Text := 'select * from stokopname';
+      ///Open;
      end;
 
      tampilStokOpname;
@@ -251,6 +268,11 @@ IF DM.qryStokOpname.RecordCount >= 1 then
   end
   else
   MessageDlg('Data Tidak Di Temukan...!',mtWarning,[mbOK],0);
+end;
+
+procedure TFStokOpname.cbblLimitPropertiesChange(Sender: TObject);
+begin
+tampilStokOpname;
 end;
 
 end.

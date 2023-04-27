@@ -28,7 +28,6 @@ object DM: TDM
     Top = 80
   end
   object qryPenjualan: TADOQuery
-    Active = True
     Connection = conApotik
     CursorType = ctStatic
     Parameters = <>
@@ -123,7 +122,7 @@ object DM: TDM
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from stokopname')
+      'select * from stokopname limit 5')
     Left = 231
     Top = 200
   end

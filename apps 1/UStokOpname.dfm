@@ -54,7 +54,7 @@ object FStokOpname: TFStokOpname
       Align = alTop
       Caption = 'STOK OPNAME / DATA OBAT'
       TabOrder = 0
-      Height = 104
+      Height = 111
       Width = 1026
       object cxlblTglStokOpname: TcxLabel
         Left = 8
@@ -160,17 +160,17 @@ object FStokOpname: TFStokOpname
     end
     object cxgrpbxDataObatStokOpname: TcxGroupBox
       Left = 1
-      Top = 105
+      Top = 112
       Align = alClient
       Caption = 'DATA OBAT STOK OPNAME'
       TabOrder = 1
-      Height = 338
+      Height = 331
       Width = 1026
       object dbgrdhDataObat: TDBGridEh
         Left = 3
-        Top = 15
+        Top = 65
         Width = 1020
-        Height = 313
+        Height = 256
         Align = alClient
         DataGrouping.GroupLevels = <>
         DataSource = DM.dsStokOpname
@@ -242,6 +242,28 @@ object FStokOpname: TFStokOpname
             Width = 304
           end>
         object RowDetailData: TRowDetailPanelControlEh
+        end
+      end
+      object cxgrpbxTampilObat: TcxGroupBox
+        Left = 3
+        Top = 15
+        Align = alTop
+        Caption = 'LIMIT'
+        TabOrder = 1
+        Height = 50
+        Width = 1020
+        object cbblLimit: TcxComboBox
+          Left = 8
+          Top = 16
+          Properties.Items.Strings = (
+            '10'
+            '20'
+            '30'
+            'Tampil Semua')
+          Properties.OnChange = cbblLimitPropertiesChange
+          TabOrder = 0
+          Text = 'cbblLimit'
+          Width = 162
         end
       end
     end
