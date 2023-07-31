@@ -54,6 +54,8 @@ type
     qryJadwalStokOpname: TADOQuery;
     qryLokasiRak: TADOQuery;
     dsLokasiRak: TDataSource;
+    qryStokOpnameTemp: TADOQuery;
+    dsStokOpnameTemp: TDataSource;
   private
     { Private declarations }
   public

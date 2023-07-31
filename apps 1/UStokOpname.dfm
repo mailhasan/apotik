@@ -24,6 +24,15 @@ object FStokOpname: TFStokOpname
     Align = alBottom
     Color = clSkyBlue
     TabOrder = 0
+    object btnSelesai: TcxButton
+      Left = 9
+      Top = 8
+      Width = 125
+      Height = 25
+      Caption = 'Selesai Stok Opname'
+      TabOrder = 0
+      OnClick = btnSelesaiClick
+    end
   end
   object pnlAtas: TPanel
     Left = 0
@@ -106,6 +115,7 @@ object FStokOpname: TFStokOpname
       object edtSatuan: TcxTextEdit
         Left = 328
         Top = 72
+        Enabled = False
         TabOrder = 7
         Width = 97
       end
@@ -117,6 +127,7 @@ object FStokOpname: TFStokOpname
       object cxcrncydtStok: TcxCurrencyEdit
         Left = 432
         Top = 72
+        Enabled = False
         Properties.AssignedValues.DisplayFormat = True
         TabOrder = 9
         OnKeyPress = cxcrncydtStokKeyPress
@@ -173,7 +184,7 @@ object FStokOpname: TFStokOpname
         Height = 256
         Align = alClient
         DataGrouping.GroupLevels = <>
-        DataSource = DM.dsStokOpname
+        DataSource = DM.dsStokOpnameTemp
         DrawMemoText = True
         Flat = False
         FooterColor = clWindow

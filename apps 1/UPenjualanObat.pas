@@ -498,6 +498,7 @@ end;
 
 procedure TFPenjualanObat.btnPrintClick(Sender: TObject);
 begin
+Application.CreateForm(TFPrintPenjualan, FPrintPenjualan);
 with FPrintPenjualan do
 begin
 
@@ -521,6 +522,7 @@ end;
 
 procedure TFPenjualanObat.REKAPLAPORANDATA1Click(Sender: TObject);
 begin
+  Application.CreateForm(TFormRekapLaporanData, FormRekapLaporanData);
   FormRekapLaporanData.Show;
 end;
 

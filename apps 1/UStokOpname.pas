@@ -46,6 +46,7 @@ type
     HAPUS1: TMenuItem;
     cxgrpbxTampilObat: TcxGroupBox;
     cbblLimit: TcxComboBox;
+    btnSelesai: TcxButton;
     procedure cbbNamaObatKeyPress(Sender: TObject; var Key: Char);
     procedure cbbNamaObatDblClick(Sender: TObject);
     procedure cxcrncydtStokKeyPress(Sender: TObject; var Key: Char);
@@ -55,6 +56,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure HAPUS1Click(Sender: TObject);
     procedure cbblLimitPropertiesChange(Sender: TObject);
+    procedure btnSelesaiClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -104,21 +106,21 @@ begin
   tanggal1 := FormatDateTime('yyyy-MM-dd',IncDay(cxdtdtTglStokOpname.EditValue,1));
   if cbblLimit.Text = 'Tampil Semua' then
     begin
-     with DM.qryStokOpname do
+     with DM.qryStokOpnameTemp do
       begin
         Close;
         SQL.Clear;
-        SQL.Text := 'SELECT * FROM stokopname WHERE tglStokOpname BETWEEN "'+tanggal+'" AND "'+tanggal1+'"';
+        SQL.Text := 'SELECT * FROM stokopnameTemp WHERE tglStokOpname="'+tanggal+'"  ORDER BY createDate DESC';
         Open;
       end;
     end
   else
     begin
-      with DM.qryStokOpname do
+      with DM.qryStokOpnameTemp do
       begin
         Close;
         SQL.Clear;
-        SQL.Text := 'SELECT * FROM stokopname WHERE (tglStokOpname BETWEEN "'+tanggal+'" AND "'+tanggal1+'") ORDER BY createDate DESC limit '+cbblLimit.Text+' ';
+        SQL.Text := 'SELECT * FROM stokopnameTemp WHERE (tglStokOpname="'+tanggal+'") ORDER BY createDate DESC limit '+cbblLimit.Text+' ';
         Open;
       end;
     end
@@ -189,6 +191,7 @@ if (edtKodeObat.Text='') or (cbbNamaObat.Text='') or
     MessageDlg('Data Harus Di Isi Lengkap...!',mtInformation,[mbok],0)
     else
     begin
+      /// update stok obat di tabel obat
       with DM.qryObat do
       begin
        Close;
@@ -200,11 +203,11 @@ if (edtKodeObat.Text='') or (cbbNamaObat.Text='') or
       end;
 
       tglStokOpname := FormatDateTime('yyyy-MM-dd H:mm',cxdtdtTglStokOpname.EditValue);
-      with DM.qryStokOpname do
+      with DM.qryStokOpnameTemp do
       begin
        Close;
        SQL.Clear;
-       SQL.Text := 'insert into stokopname (tglStokOpname,kdObat,namaObat,'+
+       SQL.Text := 'insert into stokopnametemp (tglStokOpname,kdObat,namaObat,'+
                   'satuanObat,jumlahStok,jumlahStokReal,keterangan,createDate) values '+
                   '("'+tglStokOpname+'","'+edtKodeObat.Text+'","'+cbbNamaObat.Text+'",'+
                   '"'+edtSatuan.Text+'","'+cxcrncydtStok.Text+'","'+cxcrncydtRealStok.Text+'",'+
@@ -231,13 +234,13 @@ var
   id,kodeObat:String;
   jumlahStok:Integer;
 begin
-IF DM.qryStokOpname.RecordCount >= 1 then
+IF DM.qryStokOpnameTemp.RecordCount >= 1 then
   begin
-    if MessageDlg('Anda Ingin Menghapus Data "'+DM.qryStokOpname['namaObat']+'" ?', mtConfirmation,[mbyes,mbno],0)=mryes then
+    if MessageDlg('Anda Ingin Menghapus Data "'+DM.qryStokOpnameTemp['namaObat']+'" ?', mtConfirmation,[mbyes,mbno],0)=mryes then
     begin
-     id := DM.qryStokOpname.Fieldbyname('idStokOpname').AsString;
-     kodeObat := DM.qryStokOpname.Fieldbyname('kdObat').AsString;
-     jumlahStok := DM.qryStokOpname.Fieldbyname('jumlahStok').AsInteger;
+     id := DM.qryStokOpnameTemp.Fieldbyname('idStokOpname').AsString;
+     kodeObat := DM.qryStokOpnameTemp.Fieldbyname('kdObat').AsString;
+     jumlahStok := DM.qryStokOpnameTemp.Fieldbyname('jumlahStok').AsInteger;
 
      with DM.qryObat do
      begin
@@ -249,7 +252,7 @@ IF DM.qryStokOpname.RecordCount >= 1 then
       Open;
      end;
 
-     with DM.qryStokOpname do
+     with DM.qryStokOpnameTemp do
      begin
       Close;
       SQL.Clear;
@@ -273,6 +276,42 @@ end;
 procedure TFStokOpname.cbblLimitPropertiesChange(Sender: TObject);
 begin
 tampilStokOpname;
+end;
+
+procedure TFStokOpname.btnSelesaiClick(Sender: TObject);
+begin
+ /// query tampil stokopname temp
+ With DM.qryStokOpnameTemp do
+ begin
+  Close;
+  SQL.Clear;
+  SQL.Text := 'select tglStokOpname,kdObat,namaObat,satuanObat,jumlahStok,jumlahStokReal,keterangan from stokopnameTemp';
+  Open;
+ end;
+
+ ///insert ke stokopname
+ with DM.qryStokOpname do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Text := 'insert into stokopname (tglStokOpname,kdObat,namaObat,satuanObat,jumlahStok,jumlahStokReal,keterangan)  select tglStokOpname,kdObat,namaObat,satuanObat,jumlahStok,jumlahStokReal,keterangan from stokopnameTemp';
+    ExecSQL;
+    ///SQL.Text := 'select * from stokopname';
+    ///Open;
+  end;
+
+  /// delete di isi tabel 
+  with DM.qryStokOpnameTemp do
+  begin
+   Close;
+   SQL.Clear;
+   SQL.Text := 'delete from stokopnameTemp';
+   ExecSQL;
+   SQL.Text := 'select * from stokopnameTemp';
+   Open;
+  end;
+
+  MessageDlg('StokOpname Berhasil Di Proses...!',mtInformation,[mbOK],0)
 end;
 
 end.

@@ -28,6 +28,7 @@ object DM: TDM
     Top = 80
   end
   object qryPenjualan: TADOQuery
+    Active = True
     Connection = conApotik
     CursorType = ctStatic
     Parameters = <>
@@ -396,5 +397,20 @@ object DM: TDM
     DataSet = qryLokasiRak
     Left = 782
     Top = 441
+  end
+  object qryStokOpnameTemp: TADOQuery
+    Active = True
+    Connection = conApotik
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'select * from stokopnametemp')
+    Left = 760
+    Top = 22
+  end
+  object dsStokOpnameTemp: TDataSource
+    DataSet = qryStokOpnameTemp
+    Left = 841
+    Top = 56
   end
 end

@@ -335,6 +335,7 @@ end;
 if DM.qryPenerimaanObat.RecordCount >= 1 then
   begin
     noPenerimaa:= DM.qryPenerimaanObat.FieldByname('noPenerimaanObat').AsString;
+    Application.CreateForm(TFPembayaran, FPembayaran);
     with FPembayaran do
     begin
      cxlblNo.Caption := noPenerimaa;
@@ -357,6 +358,7 @@ if cbbKategoriPenerimaan.Text = '' then
   end
   else
   begin
+    Application.CreateForm(TFormpPencarianReturSupplier, FormpPencarianReturSupplier);
     WITH FormpPencarianReturSupplier DO
     begin
       cxlblKATEGORI.Caption := cbbKategoriPenerimaan.Text;

@@ -167,8 +167,8 @@ if (cxtxtdtNOSTOKOPNAME.Text='') or (cxdtdtTGLSTOKOPNAME.Text='') or (cxtxtdtKET
          SQL.Clear;
          SQL.Text := 'INSERT INTO stokopname (`kdObat`,`namaObat`,`satuanObat`,`lokasiRak`,`jumlahStok`) SELECT `kdObat`,`namaObat`,`satuanObat`,`lokasiRak`,`jumlahStok` FROM obat';
          ExecSQL;
-         SQL.Text := 'select * from stokopname';
-         Open;
+         ///SQL.Text := 'select * from stokopname';
+         ///Open;
         end;
 
         /// update di stok opname setelah data obat ke input
@@ -178,8 +178,8 @@ if (cxtxtdtNOSTOKOPNAME.Text='') or (cxdtdtTGLSTOKOPNAME.Text='') or (cxtxtdtKET
          SQL.Clear;
          SQL.Text := 'UPDATE stokopname SET tglStokOpname="'+FormatDateTime('YYYY-MM-dd',cxdtdtTGLSTOKOPNAME.Date)+'",jumlahStokReal=0,keterangan="'+cxtxtdtKETERANGAN.Text+'" WHERE tglStokOpname IS NULL';
          ExecSQL;
-         SQL.Text := 'select * from stokopname';
-         Open;
+         ///SQL.Text := 'select * from stokopname';
+         ///Open;
         end;
 
         detailTampilStokopname;

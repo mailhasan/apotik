@@ -224,7 +224,7 @@ object FListDataPenerimaan: TFListDataPenerimaan
         object dbgrdhDetailPenjualan: TDBGridEh
           Left = 0
           Top = 0
-          Width = 1008
+          Width = 991
           Height = 118
           Align = alClient
           DataGrouping.GroupLevels = <>

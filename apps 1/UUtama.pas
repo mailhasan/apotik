@@ -126,67 +126,67 @@ uses UDataSupplier,UPenjualanObat,UDataDokter,UDataObat,UnListDataPenjualan,UBan
 procedure TFUtama.DATASUPPLIER1Click(Sender: TObject);
 begin
   Application.CreateForm(TFDataSupplier, FDataSupplier);
-  FDataSupplier.Show;
+  FDataSupplier.ShowModal;
 end;
 
 procedure TFUtama.PENJUALANOBAT1Click(Sender: TObject);
 begin
   Application.CreateForm(TFPenjualanObat, FPenjualanObat);
-  FPenjualanObat.Show;
+  FPenjualanObat.ShowModal;
 end;
 
 procedure TFUtama.HELP1Click(Sender: TObject);
 begin
   Application.CreateForm(TFBantuan, FBantuan);
-  FBantuan.Show;
+  FBantuan.ShowModal;
 end;
 
 procedure TFUtama.DATADOKTER1Click(Sender: TObject);
 begin
   Application.CreateForm(TFDataDokter, FDataDokter);
-  FDataDokter.Show;
+  FDataDokter.ShowModal;
 end;
 
 procedure TFUtama.DATAOBAT1Click(Sender: TObject);
 begin
   Application.CreateForm(TFDataObat, FDataObat);
-  FDataObat.Show;
+  FDataObat.ShowModal;
 end;
 
 procedure TFUtama.LISTPENJUALANOBAT1Click(Sender: TObject);
 begin
   Application.CreateForm(TFListDataPenjualan, FListDataPenjualan);
-  FListDataPenjualan.Show;
+  FListDataPenjualan.ShowModal;
 end;
 
 procedure TFUtama.PENERIMAANOBAT1Click(Sender: TObject);
 begin
   Application.CreateForm(TFPenerimaan, FPenerimaan);
-  FPenerimaan.Show;
+  FPenerimaan.ShowModal;
 end;
 
 procedure TFUtama.LIST1Click(Sender: TObject);
 begin
   Application.CreateForm(TFListDataPenerimaan, FListDataPenerimaan);
-  FListDataPenerimaan.Show;
+  FListDataPenerimaan.ShowModal;
 end;
 
 procedure TFUtama.PENGELUARAN1Click(Sender: TObject);
 begin
   Application.CreateForm(TFPengeluaran, FPengeluaran);
-  FPengeluaran.Show;
+  FPengeluaran.ShowModal;
 end;
 
 procedure TFUtama.STORBANK1Click(Sender: TObject);
 begin
   Application.CreateForm(TFStorBank, FStorBank);
-  FStorBank.Show;
+  FStorBank.ShowModal;
 end;
 
 procedure TFUtama.PENDAPATAN1Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporangPendapatan, FLaporangPendapatan);
-  FLaporangPendapatan.Show;
+  FLaporangPendapatan.ShowModal;
 end;
 
 procedure TFUtama.RETUROBAT1Click(Sender: TObject);
@@ -202,103 +202,103 @@ end;
 procedure TFUtama.LAPORANPENERIMAAN1Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporanPenerimaanTgl, FLaporanPenerimaanTgl);
-  FLaporanPenerimaanTgl.Show;
+  FLaporanPenerimaanTgl.ShowModal;
 end;
 
 procedure TFUtama.LAPORANPENJUALAN1Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporangPenjualan, FLaporangPenjualan);
-  FLaporangPenjualan.Show;
+  FLaporangPenjualan.ShowModal;
 end;
 
 procedure TFUtama.STOKOPNAME2Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporangStokOpname, FLaporangStokOpname);
-  FLaporangStokOpname.Show;
+  FLaporangStokOpname.ShowModal;
 end;
 
 procedure TFUtama.LAPORANSTOK1Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporanStokObat, FLaporanStokObat);
-  FLaporanStokObat.Show;
+  FLaporanStokObat.ShowModal;
 end;
 
 procedure TFUtama.DATAPENGGUNA1Click(Sender: TObject);
 begin
   Application.CreateForm(TFDataPengguna, FDataPengguna);
-  FDataPengguna.Show;
+  FDataPengguna.ShowModal;
 end;
 
 procedure TFUtama.PENGELUARAN2Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporanPengeluaranLain, FLaporanPengeluaranLain);
-  FLaporanPengeluaranLain.Show;
+  FLaporanPengeluaranLain.ShowModal;
 end;
 
 procedure TFUtama.RETURKONSINYASI1Click(Sender: TObject);
 begin
   Application.CreateForm(TFReturKonsinyasi, FReturKonsinyasi);
-  FReturKonsinyasi.Show;
+  FReturKonsinyasi.ShowModal;
 end;
 
 procedure TFUtama.LISTRETURSUPPLIER1Click(Sender: TObject);
 begin
   Application.CreateForm(TFListDataReturSupplier, FListDataReturSupplier);
-  FListDataReturSupplier.Show
+  FListDataReturSupplier.ShowModal;
 end;
 
 procedure TFUtama.URUTANTERLARIS1Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporanUrutanBarang, FLaporanUrutanBarang);
-  FLaporanUrutanBarang.Show;
+  FLaporanUrutanBarang.ShowModal;
 end;
 
 procedure TFUtama.OTALRESEPDOKTER1Click(Sender: TObject);
 begin
   Application.CreateForm(TFLaporanTotalResepDokter, FLaporanTotalResepDokter);
-  FLaporanTotalResepDokter.Show;
+  FLaporanTotalResepDokter.ShowModal;
 end;
 
 procedure TFUtama.SATUAN1Click(Sender: TObject);
 begin
   Application.CreateForm(TFSatuanObat, FSatuanObat);
-  FSatuanObat.Show;
+  FSatuanObat.ShowModal;
 end;
 
 procedure TFUtama.IDENTITASAPOTIK1Click(Sender: TObject);
 begin
   Application.CreateForm(TFIndentitasApotik, FIndentitasApotik);
-  FIndentitasApotik.Show;
+  FIndentitasApotik.ShowModal;
 end;
 
 procedure TFUtama.AMBAHSTOKMANUAL1Click(Sender: TObject);
 begin
   Application.CreateForm(TFormTambahStokManual, FormTambahStokManual);
-  FormTambahStokManual.Show;
+  FormTambahStokManual.ShowModal;
 end;
 
 procedure TFUtama.LISTTAMBAHSTOKMANUAL1Click(Sender: TObject);
 begin
   Application.CreateForm(TFormListTambahStokManual, FormListTambahStokManual);
-  FormListTambahStokManual.Show;
+  FormListTambahStokManual.ShowModal;
 end;
 
 procedure TFUtama.JAMSHIF2Click(Sender: TObject);
 begin
   Application.CreateForm(TFormJamShif, FormJamShif);
-  FormJamShif.Show;
+  FormJamShif.ShowModal;
 end;
 
 procedure TFUtama.JADWAKERJA1Click(Sender: TObject);
 begin
   Application.CreateForm(TFormJadwalKerja, FormJadwalKerja);
-  FormJadwalKerja.Show;
+  FormJadwalKerja.ShowModal;
 end;
 
 procedure TFUtama.KARTUSTOK1Click(Sender: TObject);
 begin
  Application.CreateForm(TFormMONITORINGSTOK, FormMONITORINGSTOK);
- FormMONITORINGSTOK.Show;
+ FormMONITORINGSTOK.ShowModal;
 end;
 
 procedure TFUtama.Versi11Click(Sender: TObject);

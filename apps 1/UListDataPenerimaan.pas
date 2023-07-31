@@ -105,6 +105,7 @@ begin
 IF DM.qryPenerimaanObat.RecordCount >= 1 then
   begin
     noPenerimaa:= DM.qryPenerimaanObat.FieldByname('noPenerimaanObat').AsString;
+    Application.CreateForm(TFPembayaran, FPembayaran);
     with FPembayaran do
     begin
      cxlblNo.Caption := noPenerimaa;
@@ -121,6 +122,7 @@ end;
 procedure TFListDataPenerimaan.btnCariBerdasarkanObatClick(
   Sender: TObject);
 begin
+  Application.CreateForm(TFormCariBerdasarkanNamaObat, FormCariBerdasarkanNamaObat);
   FormCariBerdasarkanNamaObat.Show;
 end;
 

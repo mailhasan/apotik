@@ -165,6 +165,7 @@ end;
 
 procedure TFormTambahJadwalKerja.btnCariPetugasClick(Sender: TObject);
 begin
+Application.CreateForm(TFormCariPengguna, FormCariPengguna);
 FormCariPengguna.Show;
 end;
 
